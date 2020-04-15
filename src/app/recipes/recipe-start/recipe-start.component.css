@@ -1,0 +1,14 @@
+h3 {
+    margin-top: 1%;
+}
+
+img {
+    max-height: 30%;
+    border-radius: 5px;
+}
+
+img:hover {
+    transform: scale(1.01);
+    transition: ease;
+    transition-duration: 5ms;
+}

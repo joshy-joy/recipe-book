@@ -1,1 +1,35 @@
-<p>recipe-detail works!</p>
+<div class="row">
+    <div class="col-xl-12 text-center">
+        <img src="{{ recipe.imagePath}}" alt="" class="img-responsive">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12 text-center">
+        <h1>{{ recipe.name }}</h1>
+    </div>
+</div>
+<hr>
+<div class="raw">
+    <div class="col-xl-12 text-center">
+        <button class="btn-sm btn-success" (click)="onAddToShppingList()">Shopping list</button>
+        <button class="btn-sm btn-secondary" [routerLink]="['edit']" routerLinkActive="router-link-active" >Edit Recipe</button>
+        <button class="btn-sm btn-danger" (click)="onDeleteRecipe()">Delete Recipe</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xl-12 text-center">
+        {{ recipe.description }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <ul class="list-group">
+            <li class="list-group-item" 
+            *ngFor="let ingredient of recipe.ingredients"
+            >
+            {{ ingredient.name }} - {{  ingredient.amount }}
+            </li>
+          </ul>
+    </div>
+</div>

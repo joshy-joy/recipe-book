@@ -1,0 +1,16 @@
+img {
+    max-width: 85%;
+}
+
+button {
+    margin: 5px;
+}
+
+ul {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+hr {
+    max-width: 75%;
+}

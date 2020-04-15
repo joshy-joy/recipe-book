@@ -1,0 +1,13 @@
+a {
+    cursor: pointer;
+    color: gray;
+}
+
+a:hover{
+    color: black;
+}
+
+.active {
+    background-color: #43a140;
+    border: solid #43a140;
+}

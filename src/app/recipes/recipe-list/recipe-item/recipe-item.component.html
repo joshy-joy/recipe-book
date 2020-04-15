@@ -1,1 +1,9 @@
-<p>recipe-item works!</p>
+<a class="list-group-item clearfix" [routerLink]="[index]" routerLinkActive="active" >
+    <div class="float-left recipe-content">
+        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+        <p class="list-group-item-heading">{{ recipe.description }}</p>
+    </div>
+    <div class="text-right">
+        <img src="{{ recipe.imagePath }}" alt="img" class="img-responsive" style="max-height:50px">
+    </div>
+</a>

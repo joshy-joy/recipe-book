@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-xl-12">
+        <form class="form-group" [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <button class="btn btn-success" type="submit" [disabled]="!recipeForm.valid">Save</button>
+                    <button class="btn btn-danger" type="button" (click)="onClear()">Cancel</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="form-control" formControlName="name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <label for="path">Image URL</label>
+                    <input type="text" id="path" class="form-control" formControlName="path">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <img src="" alt="" height="50%" width="50%">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 form-group">
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" 
+                    id="desc" name="desc" rows="5" formControlName="desc"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12"  formArrayName="ingredients">
+                    <div class="row"  
+                    *ngFor="let Ingredient of recipeForm.get('ingredients')['controls']; let i=index" 
+                    [formGroupName]="i">
+                        <div class="col-xl-7 form-group">
+                            <input type="text" id="ing" placeholder="Ingredient" 
+                            class="form-control" formControlName="name">
+                        </div>
+                        <div class="col-xl-3">
+                            <input type="text" id="amount" placeholder="Amount" 
+                            class="form-control" formControlName="amount">
+                        </div>
+                        <div class="col-xl-2">
+                            <button type="button" class="btn btn-danger">X</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <button class="btn btn-primary" type="button" 
+                    (click)="onAddIngredient()">Add Ingredient</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
