@@ -1,39 +1,23 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
 
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class recipeService {
+export class recipeService implements OnInit{
 
     recipeSelected = new EventEmitter<Recipe>();
     recipeChanged = new Subject<Recipe[]>();
-    
-    private recipes: Recipe[] = [
-        new Recipe(
-            'Mexican beacon stake', 
-            'Salty fied bacon meat stake', 
-            'https://cdn.pixabay.com/photo/2016/06/15/19/09/food-1459693_960_720.jpg',
-            [
-                new Ingredient('cups red wine', 10), 
-                new Ingredient('Beacon',110), 
-                new Ingredient('Lime', 25)]
-            ),
-        new Recipe(
-            'Beef stew', 
-            '50% Less Sodium Beef Broth', 
-            'https://cdn.pixabay.com/photo/2017/10/20/17/45/goulash-2872112_960_720.jpg',
-            [
-                new Ingredient('cups red wine', 10), 
-                new Ingredient('Beef',110), 
-                new Ingredient('Lime', 25)]
-            ),
-        ]
+    private recipes: Recipe[] = []
 
-    constructor(private sLService: ShoppingListService){}
+    constructor(private sLService: ShoppingListService, private http: HttpClient){}
+
+    ngOnInit(){
+    }
 
     
     getRecipe(){
@@ -61,5 +45,22 @@ export class recipeService {
     deleteRecipe(id: number){
         this.recipes.splice(id,1);
         this.recipeChanged.next(this.recipes.slice());
+    }
+
+    fetchDataFromFirebase(){
+        this.http.get<Recipe[]>('https://ng-course-project-636ea.firebaseio.com/recipes.json').subscribe(
+            (recipe: Recipe[]) => {
+                this.recipes = recipe;
+            }
+        );
+    }
+
+
+    saveDataInFirebase(){
+        this.http.put('https://ng-course-project-636ea.firebaseio.com/recipes.json', this.recipes).subscribe(
+            response => {
+                console.log(response);
+            }
+        )
     }
 }

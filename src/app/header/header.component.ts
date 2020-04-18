@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { recipeService } from '../recipes/recipe.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,16 @@ import { Component, OnInit} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private recipeService: recipeService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+  }
+
+  saveDataOnFirebase(){
+    this.recipeService.saveDataInFirebase();
+  }
+
+  fetchDataOnFirebase(){
+    this.recipeService.fetchDataFromFirebase();
   }
 }

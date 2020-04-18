@@ -1,5 +1,6 @@
 img {
     max-width: 85%;
+    border-radius: 10px;
 }
 
 button {
@@ -13,4 +14,8 @@ ul {
 
 hr {
     max-width: 75%;
+}
+
+.form-group {
+    border-radius: 10px;
 }

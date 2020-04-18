@@ -54,8 +54,8 @@ export class EditRecipeComponent implements OnInit {
 
     this.recipeForm = new FormGroup({
       name: new FormControl(recipeName, Validators.required),
-      path: new FormControl(recipeImagePath, Validators.required),
-      desc: new FormControl(recipeDescription, Validators.required),
+      imagePath: new FormControl(recipeImagePath, Validators.required),
+      description: new FormControl(recipeDescription, Validators.required),
       ingredients: ingredients
     });
   }
@@ -68,6 +68,7 @@ export class EditRecipeComponent implements OnInit {
       console.log(this.recipeForm.value)
       this.recipeService.addRecipe(this.recipeForm.value);
     }
+    this.router.navigate(['../'], {relativeTo: this.route})
   }
 
   onAddIngredient(){
@@ -81,6 +82,10 @@ export class EditRecipeComponent implements OnInit {
 
   onClear(){
     this.router.navigate(['../'], {relativeTo: this.route});
+  }
+
+  onDeleteIngredient(index: number){
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
   }
 
 }
