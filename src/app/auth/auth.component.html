@@ -1,1 +1,21 @@
-<p>auth works!</p>
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-danger text-center" *ngIf="error">
+            {{ error }}
+        </div>
+        <div class="text-center" *ngIf="isLoading">
+            <app-spinning-loader></app-spinning-loader>
+        </div>
+        <form class="form-group" (ngSubmit)="onSubmit(form)" #form=ngForm *ngIf="!isLoading">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text" class="form-control" ngModel required email>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" 
+            class="form-control" ngModel required minlength="6">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">{{ isLogin ? "Login" : "Sign Up" }}</button>
+            <button type="button" class="btn btn-primary" (click)="switchToLogin()">
+                {{ isLogin ? "Switch to Sign Up" : "Switch to Login" }}
+            </button>
+        </form>
+    </div>
+</div>

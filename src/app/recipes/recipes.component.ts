@@ -20,6 +20,8 @@ export class RecipesComponent implements OnInit {
       (recipe: Recipe) => {
         this.recipeItem = recipe;
       });
+
+    this.recipeService.fetchDataFromFirebase().subscribe();
   }
 
 }

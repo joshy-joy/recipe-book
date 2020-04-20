@@ -11,6 +11,6 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
     constructor(private reciepService: recipeService){}
 
     resolve(route: ActivatedRouteSnapshot,state: RouterStateSnapshot){
-        this.reciepService.fetchDataFromFirebase();
+        return this.reciepService.fetchDataFromFirebase();
     }
 }
