@@ -1,4 +1,4 @@
-https://joshy-joy.github.io/recipe-book/recipes
+https://joshy-joy.github.io/recipe-book/
 
 # Project
 
